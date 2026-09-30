@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@source './index.html';
+@source './src/**/*.{vue,js,ts,jsx,tsx}';
+
+@plugin '@tailwindcss/typography';
+@plugin "@iconify/tailwind4";
+
+/*
+ * 主题色
+ *   ice    冰蓝色，站点主色
+ *   candle 烛焰橙，点缀色
+ *   dark   深蓝黑，页头 / 页脚等深色块
+ */
+@theme {
+  --color-ice-50: #f0f9ff;
+  --color-ice-100: #e0f2fe;
+  --color-ice-200: #bae6fd;
+  --color-ice-300: #7dd3fc;
+  --color-ice-400: #38bdf8;
+  --color-ice-500: #0ea5e9;
+  --color-ice-600: #0284c7;
+  --color-ice-700: #0369a1;
+  --color-ice-800: #075985;
+  --color-ice-900: #0c4a6e;
+
+  --color-candle-400: #fbbf24;
+  --color-candle-500: #f59e0b;
+  --color-candle-600: #d97706;
+
+  --color-dark: #0a0f1a;
+  --color-dark-800: #111827;
+  --color-dark-900: #0b1120;
+
+  --font-sans: Inter, Noto Sans SC, sans-serif;
+  --font-display: "M PLUS Rounded 1c", sans-serif;
+  --font-mono: JetBrains Mono, Fira Code, monospace;
+}
+
+/* ===== 基础变量与排版 ===== */
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --code-bg: #f4f3ec;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+/* 深色模式变量（页面主背景固定为浅冰蓝，见 body） */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --code-bg: #1f2028;
+  }
+}
+
+/* 页面背景固定为浅冰蓝，不随系统深色模式变化 */
+body {
+  background-color: #f0f7ff;
+  color: #1e3a5f;
+}
+
+/* ===== 内联代码 ===== */
+code {
+  font-family: var(--mono), monospace;
+  display: inline-flex;
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  color: var(--text-h);
+  background: var(--code-bg);
+}
+
+/* ===== 应用外壳 ===== */
+#app {
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* ===== 滚动条（亮色版）===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.8);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.5) rgba(0, 0, 0, 0.05);
+}
+
+/* ===== 竖排文字 ===== */
+.vertical-text {
+  writing-mode: sideways-lr;
+  -webkit-writing-mode: sideways-lr;
+  text-orientation: mixed;
+}
+
+/* ===== Iconify 图标垂直对齐 ===== */
+[class^="icon-"],
+[class*=" icon-"] {
+  vertical-align: -0.125em;
+}
+
+[class^="icon-[pajamas"],
+[class*=" icon-[pajamas"] {
+  vertical-align: -0.2em;
+}
